@@ -14,7 +14,7 @@ import java.util.Optional;
 public interface BudgetRepository extends JpaRepository<Budget, Long> {
 
     /**
-     * Returns all budgets belonging to a user.
+     // Returns all budgets belonging to a user.
      */
     List<Budget> findByUser_UserId(Long userId);
 
