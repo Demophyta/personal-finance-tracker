@@ -42,8 +42,10 @@ public class RecurringTransactionServiceImpl implements RecurringTransactionServ
                 .active(true)
                 .build();
 
-        recurringTransactionRepository.save(rt);
-        return mapToResponse(rt);
+        RecurringTransaction savedTransaction =
+           recurringTransactionRepository.save(rt);
+
+        return mapToResponse(savedTransaction);
     }
 
     // GET ACTIVE
@@ -100,8 +102,10 @@ public class RecurringTransactionServiceImpl implements RecurringTransactionServ
         if (request.startDate() != null) rt.setStartDate(request.startDate());
         if (request.endDate() != null) rt.setEndDate(request.endDate());
 
+       RecurringTransaction savedTransaction =
         recurringTransactionRepository.save(rt);
-        return mapToResponse(rt);
+
+return mapToResponse(savedTransaction);
     }
 
     // DELETE

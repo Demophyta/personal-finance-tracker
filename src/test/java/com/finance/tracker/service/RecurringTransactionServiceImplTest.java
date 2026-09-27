@@ -229,30 +229,35 @@ class RecurringTransactionServiceImplTest {
     // PAUSE
     // =========================================================
 
-    @Test
-    void shouldPauseRecurringTransaction() {
+ @Test
+void shouldPauseRecurringTransaction() {
 
-        RecurringTransaction transaction =
-                RecurringTransaction.builder()
-                        .id(1L)
-                        .active(true)
-                        .build();
+    Category category = new Category();
+    category.setCategoryId(1L);
+    category.setName("Food");
 
-        when(recurringTransactionRepository.findById(1L))
-                .thenReturn(Optional.of(transaction));
+    RecurringTransaction transaction =
+            RecurringTransaction.builder()
+                    .id(1L)
+                    .active(true)
+                    .category(category)
+                    .build();
 
-        when(recurringTransactionRepository.save(transaction))
-                .thenReturn(transaction);
+    when(recurringTransactionRepository.findById(1L))
+            .thenReturn(Optional.of(transaction));
 
-        RecurringTransactionResponseDTO result =
-                recurringTransactionService
-                        .pauseRecurringTransaction(1L);
+    when(recurringTransactionRepository.save(transaction))
+            .thenReturn(transaction);
 
-        assertFalse(transaction.isActive());
+    RecurringTransactionResponseDTO result =
+            recurringTransactionService
+                    .pauseRecurringTransaction(1L);
 
-        verify(recurringTransactionRepository)
-                .save(transaction);
-    }
+    assertFalse(transaction.isActive());
+
+    verify(recurringTransactionRepository)
+            .save(transaction);
+}
 
 
     // =========================================================
